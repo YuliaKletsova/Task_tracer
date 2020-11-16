@@ -45,6 +45,8 @@ export default {
             setDefaultDate: true,
             defaultDate: new Date()
         })
+        console.log(this.$store.state)
+
     },
     methods: {
         submitHandler() {
@@ -58,16 +60,15 @@ export default {
             }
             this.$store.dispatch('createTask', task)
             this.$router.push('/list')
-            console.log(this.$store.state)
-        },
-        destroyed() {
-            if (this.date && this.date.destroy){
-                this.date.destroy();
-            }
-            if (this.chips && this.chips.destroy){
-                this.date.destroy();
-            }        
         }
+    },
+    unmounted() {
+        if (this.date && this.date.destroy){
+            this.date.destroy();
+        }
+        if (this.chips && this.chips.destroy){
+            this.chips.destroy();
+        }       
     }
 }
 </script>

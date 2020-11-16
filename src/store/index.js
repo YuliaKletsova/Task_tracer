@@ -9,6 +9,7 @@ export default createStore({
       state.tasks.push(task);
 
       localStorage.setItem('tasks', JSON.stringify(state.tasks))
+      //localStorage.clear(); 
     }
   },
   actions: {
@@ -17,5 +18,8 @@ export default createStore({
     }
   },
   modules: {
+  },
+  getters: {
+    tasks: s => s.tasks
   }
 })
