@@ -1,11 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Create from '../views/Create.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'Create',
-    component: Create
+    name: 'create',
+    component: ()=> import('../views/Create.vue')
   },
   {
     path: '/list',
