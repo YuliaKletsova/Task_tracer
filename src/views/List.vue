@@ -23,7 +23,9 @@
           <td class="description_td"><div class="text">{{ task.description }}</div></td>
           <td>{{ task.status }}</td>
           <td class="btn_info">
-            <router-link tag="button" class="btn btn-small" :to="'/task/'+task.id">SEE INFO</router-link>
+            <router-link tag="button" class="btn btn-small" :to="'/task/:' + task.id">
+              SEE INFO
+            </router-link>
           </td>
         </tr>
       </tbody>
