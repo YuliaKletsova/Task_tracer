@@ -10,9 +10,12 @@
               <span class="character-counter" style="float: right; font-size: 12px;">{{description.length}}/2048</span>
           </div>
           <input type="text" class="datepicker" ref="datepicker">
-          <div class="buttons">
+          <div class="buttons" v-if="task.status !== 'completed'">
             <button class="btn" type="submit">Edit</button>
-            <button class=" complete btn deep-purple darken-4" type="button">Complete task</button>  
+            <button class=" complete btn deep-purple darken-4" 
+              type="button" 
+              @click="completeTask"
+            >Complete task</button>  
           </div>
       </form>
     </div>
@@ -42,11 +45,11 @@ export default {
     });
     this.date = M.Datepicker.init(this.$refs.datepicker, {
       placeholder: "Choose deadline date",
-      minDate: new Date(),
+      minDate: new Date(this.task.date),
       disableWeekends: true,
       firstDay: 1,
       setDefaultDate: true,
-      defaultDate: new Date()
+      defaultDate: new Date(this.task.date)
     })
     setTimeout(() => {
       M.updateTextFields()
@@ -55,9 +58,15 @@ export default {
   },
   methods: {
     submitHandler() {
-      
-      
-      //this.$store.dispatch('editTask', this.task)
+      this.$store.dispatch('editTask', {
+        id: this.task.id,
+        description: this.description,
+        date: this.date.date
+      })
+      this.$router.push('/list')
+    },
+    completeTask() {
+      this.$store.dispatch('completeTask', this.task.id)
       this.$router.push('/list')
     }
   },

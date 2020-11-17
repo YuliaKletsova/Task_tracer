@@ -26,4 +26,12 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
   }
+  body {
+    min-width: 1000px;
+    min-height: 500px;
+    width: 100%;
+    height: 100%;
+    //background: url('~@/assets/background.jpg') no-repeat center right;
+    //background-size: cover;
+  }
 </style>
